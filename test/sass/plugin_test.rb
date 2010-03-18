@@ -324,12 +324,12 @@ CSS
   end
 
   def assert_needs_update(name)
-    assert(Sass::Plugin.stylesheet_needs_update?(name, template_loc, tempfile_loc),
+    assert(Sass::Plugin.instance.stylesheet_needs_update?(name, template_loc, tempfile_loc),
       "Expected #{template_loc(name)} to need an update.")
   end
 
   def assert_doesnt_need_update(name)
-    assert(!Sass::Plugin.stylesheet_needs_update?(name, template_loc, tempfile_loc),
+    assert(!Sass::Plugin.instance.stylesheet_needs_update?(name, template_loc, tempfile_loc),
       "Expected #{template_loc(name)} not to need an update.")
   end
 
@@ -381,10 +381,8 @@ CSS
   end
 end
 
-module Sass::Plugin
-  class << self
-    public :stylesheet_needs_update?
-  end
+class Sass::Plugin::Base
+  public :stylesheet_needs_update?
 end
 
 class Sass::Engine
