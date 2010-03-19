@@ -320,7 +320,7 @@ CSS
   end
 
   def clear_callbacks
-    Sass::Plugin.instance_variable_set('@_sass_callbacks', {})
+    Sass::Plugin.instance.instance_variable_set('@_sass_callbacks', {})
   end
 
   def assert_needs_update(name)
